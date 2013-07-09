@@ -1,0 +1,11 @@
+#!/bin/sh
+
+git_dir="`git rev-parse --show-toplevel`/.git"
+hook_file="$git_dir/hooks/pre-commit"
+
+echo "#!/bin/sh"   >  "$hook_file"
+echo "echo \"$@\"" >> "$hook_file"
+echo "echo '# use git-done if you are done'" >> "$hook_file"
+echo "false"       >> "$hook_file"
+chmod +x "$hook_file"
+
